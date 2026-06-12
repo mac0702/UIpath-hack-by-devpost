@@ -6,10 +6,19 @@ __v0_jsx-dev-runtime.ts
 .v0-trash/
 .vercel/
 
-# Environment variables.env.env*.local
+# Environment variables
+.env
+.env*.local
 
 # Common ignores
 node_modules
 .next/
 .DS_Store
-.vercel
+
+# UiPath local project files
+uipath-orchestrator-project/.local/
+uipath-orchestrator-project/.objects/
+uipath-orchestrator-project/.project/PackageBindingsMetadata.json
+uipath-orchestrator-project/.settings/
+uipath-orchestrator-project/.tmh/
+uipath-orchestrator-project/entry-points.json
