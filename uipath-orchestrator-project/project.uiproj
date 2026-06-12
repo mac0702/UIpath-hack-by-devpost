@@ -1,0 +1,6 @@
+{
+  "Name": "SyntheticIdentityOrchestrator",
+  "ProjectType": "Process",
+  "Description": "UiPath Maestro Case Orchestrator for Synthetic Identity Fraud Dashboard",
+  "MainFile": "Main.xaml"
+}

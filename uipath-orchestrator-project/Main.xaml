@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" x:TypeArguments="x:Object" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="30">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Reflection</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="25">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Synthetic Identity Fraud Maestro Orchestrator" sap:VirtualizedContainerService.HintSize="600,1850" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="http://localhost:3000" Name="ApiBaseUrl" />
+      <Variable x:TypeArguments="x:String" Name="PendingCasesJson" />
+      <Variable x:TypeArguments="x:Int32" Name="StatusCode" />
+      <Variable x:TypeArguments="njl:JObject" Name="ResponseObject" />
+      <Variable x:TypeArguments="njl:JArray" Name="CasesArray" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    
+    <ui:LogMessage DisplayName="Log Welcome" sap:VirtualizedContainerService.HintSize="558,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Starting UiPath SIF Maestro Orchestrator... Target Portal: &quot; + ApiBaseUrl]" />
+    
+    <!-- 1. Fetch pending cases from Next.js backend -->
+    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" BodyFormat="application/json" DisplayName="GET Pending Cases" EndPoint="[ApiBaseUrl + &quot;/api/uipath?action=get-cases&amp;status=created&quot;]" sap:VirtualizedContainerService.HintSize="558,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" Result="[PendingCasesJson]" StatusCode="[StatusCode]" TimeoutMS="10000">
+      <ui:HttpClient.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+      </ui:HttpClient.Parameters>
+    </ui:HttpClient>
+    
+    <ui:LogMessage DisplayName="Log API Fetch Status" sap:VirtualizedContainerService.HintSize="558,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Next.js API GET fetch complete. Status Code: &quot; + StatusCode.ToString]" />
+    
+    <If Condition="[StatusCode = 200]" DisplayName="If Fetch Successful" sap:VirtualizedContainerService.HintSize="558,1434" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Process Cases" sap:VirtualizedContainerService.HintSize="524,1247" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          
+          <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" JsonObject="[ResponseObject]" JsonString="[PendingCasesJson]" sap:VirtualizedContainerService.HintSize="482,60" sap2010:WorkflowViewState.IdRef="DeserializeJson_1" />
+          <Assign DisplayName="Extract Cases Array" sap:VirtualizedContainerService.HintSize="482,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <InArgument x:TypeArguments="njl:JArray">[CasesArray]</InArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="njl:JArray">[CType(ResponseObject("cases"), JArray)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          
+          <ui:LogMessage DisplayName="Log Cases Count" sap:VirtualizedContainerService.HintSize="482,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Found &quot; + CasesArray.Count.ToString + &quot; pending case(s) to process.&quot;]" />
+          
+          <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each Case Item" sap:VirtualizedContainerService.HintSize="482,824" sap2010:WorkflowViewState.IdRef="ForEach_1" Values="[CasesArray]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="njl:JToken">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="njl:JToken" Name="caseItem" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Orchestrate Verification Pipeline" sap:VirtualizedContainerService.HintSize="446,700" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="CaseId" />
+                    <Variable x:TypeArguments="x:String" Name="ApplicantName" />
+                    <Variable x:TypeArguments="x:Int32" Name="RiskScore" />
+                    <Variable x:TypeArguments="x:String" Name="RiskLevel" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  
+                  <Assign DisplayName="Get Case ID" sap:VirtualizedContainerService.HintSize="404,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <InArgument x:TypeArguments="x:String">[CaseId]</InArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[caseItem("id").ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Get Applicant Name" sap:VirtualizedContainerService.HintSize="404,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <InArgument x:TypeArguments="x:String">[ApplicantName]</InArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[caseItem("applicant_name").ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  
+                  <ui:LogMessage DisplayName="Log Case Processing" sap:VirtualizedContainerService.HintSize="404,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Orchestrating Case: &quot; + CaseId + &quot; for applicant: &quot; + ApplicantName]" />
+                  
+                  <!-- STEP 1: Document Verification -->
+                  <Sequence DisplayName="1. Document Stage" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{&quot;&quot;action&quot;&quot;:&quot;&quot;update-stage&quot;&quot;,&quot;&quot;caseId&quot;&quot;:&quot;&quot;&quot;+CaseId+&quot;&quot;&quot;,&quot;&quot;stage&quot;&quot;:&quot;&quot;document_verification&quot;&quot;,&quot;&quot;status&quot;&quot;:&quot;&quot;investigating&quot;&quot;}&quot;]" BodyFormat="application/json" DisplayName="POST Update Stage to Doc" EndPoint="[ApiBaseUrl + &quot;/api/uipath&quot;]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="POST" TimeoutMS="6000">
+                      <ui:HttpClient.ClientCertificate>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificate>
+                      <ui:HttpClient.ClientCertificatePassword>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificatePassword>
+                      <ui:HttpClient.Parameters>
+                        <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+                      </ui:HttpClient.Parameters>
+                    </ui:HttpClient>
+                    <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{&quot;&quot;action&quot;&quot;:&quot;&quot;add-agent-output&quot;&quot;,&quot;&quot;caseId&quot;&quot;:&quot;&quot;&quot;+CaseId+&quot;&quot;&quot;,&quot;&quot;agent&quot;&quot;:&quot;&quot;document_agent&quot;&quot;,&quot;&quot;stage&quot;&quot;:&quot;&quot;document_verification&quot;&quot;,&quot;&quot;status&quot;&quot;:&quot;&quot;completed&quot;&quot;,&quot;&quot;score&quot;&quot;:12,&quot;&quot;result&quot;&quot;:{&quot;&quot;ocr_match&quot;&quot;:true},&quot;&quot;reasons&quot;&quot;:[&quot;&quot;ID document formatting is valid&quot;&quot;]}&quot;]" BodyFormat="application/json" DisplayName="POST Doc Agent Result" EndPoint="[ApiBaseUrl + &quot;/api/uipath&quot;]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="HttpClient_3" Method="POST" TimeoutMS="6000">
+                      <ui:HttpClient.ClientCertificate>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificate>
+                      <ui:HttpClient.ClientCertificatePassword>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificatePassword>
+                      <ui:HttpClient.Parameters>
+                        <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+                      </ui:HttpClient.Parameters>
+                    </ui:HttpClient>
+                  </Sequence>
+                  
+                  <!-- STEP 2: Identity Verification -->
+                  <Sequence DisplayName="2. Identity Stage" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{&quot;&quot;action&quot;&quot;:&quot;&quot;update-stage&quot;&quot;,&quot;&quot;caseId&quot;&quot;:&quot;&quot;&quot;+CaseId+&quot;&quot;&quot;,&quot;&quot;stage&quot;&quot;:&quot;&quot;identity_verification&quot;&quot;}&quot;]" BodyFormat="application/json" DisplayName="POST Update Stage to ID" EndPoint="[ApiBaseUrl + &quot;/api/uipath&quot;]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="HttpClient_4" Method="POST" TimeoutMS="6000">
+                      <ui:HttpClient.ClientCertificate>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificate>
+                      <ui:HttpClient.ClientCertificatePassword>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificatePassword>
+                      <ui:HttpClient.Parameters>
+                        <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+                      </ui:HttpClient.Parameters>
+                    </ui:HttpClient>
+                    <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{&quot;&quot;action&quot;&quot;:&quot;&quot;add-agent-output&quot;&quot;,&quot;&quot;caseId&quot;&quot;:&quot;&quot;&quot;+CaseId+&quot;&quot;&quot;,&quot;&quot;agent&quot;&quot;:&quot;&quot;face_agent&quot;&quot;,&quot;&quot;stage&quot;&quot;:&quot;&quot;identity_verification&quot;&quot;,&quot;&quot;status&quot;&quot;:&quot;&quot;completed&quot;&quot;,&quot;&quot;score&quot;&quot;:10,&quot;&quot;result&quot;&quot;:{&quot;&quot;face_match&quot;&quot;:88},&quot;&quot;reasons&quot;&quot;:[&quot;&quot;Strong face match (88%) between selfie and ID photo&quot;&quot;]}&quot;]" BodyFormat="application/json" DisplayName="POST Face Agent Result" EndPoint="[ApiBaseUrl + &quot;/api/uipath&quot;]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="HttpClient_5" Method="POST" TimeoutMS="6000">
+                      <ui:HttpClient.ClientCertificate>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificate>
+                      <ui:HttpClient.ClientCertificatePassword>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificatePassword>
+                      <ui:HttpClient.Parameters>
+                        <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+                      </ui:HttpClient.Parameters>
+                    </ui:HttpClient>
+                    <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{&quot;&quot;action&quot;&quot;:&quot;&quot;add-agent-output&quot;&quot;,&quot;&quot;caseId&quot;&quot;:&quot;&quot;&quot;+CaseId+&quot;&quot;&quot;,&quot;&quot;agent&quot;&quot;:&quot;&quot;email_phone_agent&quot;&quot;,&quot;&quot;stage&quot;&quot;:&quot;&quot;identity_verification&quot;&quot;,&quot;&quot;status&quot;&quot;:&quot;&quot;completed&quot;&quot;,&quot;&quot;score&quot;&quot;:28,&quot;&quot;result&quot;&quot;:{&quot;&quot;risk&quot;&quot;:&quot;&quot;MEDIUM&quot;&quot;},&quot;&quot;reasons&quot;&quot;:[&quot;&quot;Free email provider detected&quot;&quot;]}&quot;]" BodyFormat="application/json" DisplayName="POST Email/Phone Result" EndPoint="[ApiBaseUrl + &quot;/api/uipath&quot;]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="HttpClient_6" Method="POST" TimeoutMS="6000">
+                      <ui:HttpClient.ClientCertificate>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificate>
+                      <ui:HttpClient.ClientCertificatePassword>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificatePassword>
+                      <ui:HttpClient.Parameters>
+                        <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+                      </ui:HttpClient.Parameters>
+                    </ui:HttpClient>
+                  </Sequence>
+                  
+                  <!-- STEP 3: Financial Analysis -->
+                  <Sequence DisplayName="3. Financial Stage" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{&quot;&quot;action&quot;&quot;:&quot;&quot;update-stage&quot;&quot;,&quot;&quot;caseId&quot;&quot;:&quot;&quot;&quot;+CaseId+&quot;&quot;&quot;,&quot;&quot;stage&quot;&quot;:&quot;&quot;financial_analysis&quot;&quot;}&quot;]" BodyFormat="application/json" DisplayName="POST Update Stage to Finance" EndPoint="[ApiBaseUrl + &quot;/api/uipath&quot;]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="HttpClient_7" Method="POST" TimeoutMS="6000">
+                      <ui:HttpClient.ClientCertificate>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificate>
+                      <ui:HttpClient.ClientCertificatePassword>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificatePassword>
+                      <ui:HttpClient.Parameters>
+                        <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+                      </ui:HttpClient.Parameters>
+                    </ui:HttpClient>
+                    <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{&quot;&quot;action&quot;&quot;:&quot;&quot;add-agent-output&quot;&quot;,&quot;&quot;caseId&quot;&quot;:&quot;&quot;&quot;+CaseId+&quot;&quot;&quot;,&quot;&quot;agent&quot;&quot;:&quot;&quot;financial_agent&quot;&quot;,&quot;&quot;stage&quot;&quot;:&quot;&quot;financial_analysis&quot;&quot;,&quot;&quot;status&quot;&quot;:&quot;&quot;completed&quot;&quot;,&quot;&quot;score&quot;&quot;:15,&quot;&quot;result&quot;&quot;:{&quot;&quot;anomaly_score&quot;&quot;:0.1},&quot;&quot;reasons&quot;&quot;:[&quot;&quot;Statement inflow consistent with declared salary&quot;&quot;]}&quot;]" BodyFormat="application/json" DisplayName="POST Financial Result" EndPoint="[ApiBaseUrl + &quot;/api/uipath&quot;]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="HttpClient_8" Method="POST" TimeoutMS="6000">
+                      <ui:HttpClient.ClientCertificate>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificate>
+                      <ui:HttpClient.ClientCertificatePassword>
+                        <InArgument x:TypeArguments="x:String" />
+                      </ui:HttpClient.ClientCertificatePassword>
+                      <ui:HttpClient.Parameters>
+                        <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+                      </ui:HttpClient.Parameters>
+                    </ui:HttpClient>
+                  </Sequence>
+                  
+                  <!-- Determine Mock Risk Score based on client inputs in demo presets -->
+                  <Assign DisplayName="Calculate Mock Risk Score" sap:VirtualizedContainerService.HintSize="404,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <InArgument x:TypeArguments="x:Int32">[RiskScore]</InArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[If(ApplicantName.Contains("Mehta"), 15, 82)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Set Risk Level" sap:VirtualizedContainerService.HintSize="404,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                    <Assign.To>
+                      <InArgument x:TypeArguments="x:String">[RiskLevel]</InArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[If(RiskScore &gt;= 70, "HIGH", "LOW")]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  
+                  <!-- STEP 4: Risk Assessment Report -->
+                  <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{&quot;&quot;action&quot;&quot;:&quot;&quot;create-report&quot;&quot;,&quot;&quot;caseId&quot;&quot;:&quot;&quot;&quot;+CaseId+&quot;&quot;&quot;,&quot;&quot;riskScore&quot;&quot;:&quot;+RiskScore.ToString+&quot;,&quot;&quot;riskLevel&quot;&quot;:&quot;&quot;&quot;+RiskLevel+&quot;&quot;&quot;,&quot;&quot;summary&quot;&quot;:&quot;&quot;UiPath Maestro risk calculation is complete.&quot;&quot;,&quot;&quot;reasons&quot;&quot;:[&quot;&quot;Calculated via weighted AI assessment&quot;&quot;],&quot;&quot;agentBreakdown&quot;&quot;:{&quot;&quot;document&quot;&quot;:12,&quot;&quot;face&quot;&quot;:10,&quot;&quot;email_phone&quot;&quot;:28,&quot;&quot;financial&quot;&quot;:15},&quot;&quot;recommendation&quot;&quot;:&quot;&quot;&quot;+If(RiskScore &gt;= 70, "Escalate to analyst review queue.", "Auto-approve applicant.")+&quot;&quot;&quot;}&quot;]" BodyFormat="application/json" DisplayName="POST Create Risk Report" EndPoint="[ApiBaseUrl + &quot;/api/uipath&quot;]" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="HttpClient_9" Method="POST" TimeoutMS="6000">
+                    <ui:HttpClient.ClientCertificate>
+                      <InArgument x:TypeArguments="x:String" />
+                    </ui:HttpClient.ClientCertificate>
+                    <ui:HttpClient.ClientCertificatePassword>
+                      <InArgument x:TypeArguments="x:String" />
+                    </ui:HttpClient.ClientCertificatePassword>
+                    <ui:HttpClient.Parameters>
+                      <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+                    </ui:HttpClient.Parameters>
+                  </ui:HttpClient>
+                  
+                  <!-- STEP 5: Decision Routing -->
+                  <If Condition="[RiskScore &gt;= 70]" DisplayName="If High Risk" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="If_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{&quot;&quot;action&quot;&quot;:&quot;&quot;update-stage&quot;&quot;,&quot;&quot;caseId&quot;&quot;:&quot;&quot;&quot;+CaseId+&quot;&quot;&quot;,&quot;&quot;stage&quot;&quot;:&quot;&quot;human_review&quot;&quot;,&quot;&quot;status&quot;&quot;:&quot;&quot;human_review&quot;&quot;}&quot;]" BodyFormat="application/json" DisplayName="POST Escalate to Review" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="HttpClient_10" Method="POST" TimeoutMS="6000">
+                        <ui:HttpClient.ClientCertificate>
+                          <InArgument x:TypeArguments="x:String" />
+                        </ui:HttpClient.ClientCertificate>
+                        <ui:HttpClient.ClientCertificatePassword>
+                          <InArgument x:TypeArguments="x:String" />
+                        </ui:HttpClient.ClientCertificatePassword>
+                        <ui:HttpClient.Parameters>
+                          <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+                        </ui:HttpClient.Parameters>
+                      </ui:HttpClient>
+                    </If.Then>
+                    <If.Else>
+                      <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileFolder="{x:Null}" Headers="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" Body="[&quot;{&quot;&quot;action&quot;&quot;:&quot;&quot;close-case&quot;&quot;,&quot;&quot;caseId&quot;&quot;:&quot;&quot;&quot;+CaseId+&quot;&quot;&quot;,&quot;&quot;decision&quot;&quot;:&quot;&quot;approved&quot;&quot;,&quot;&quot;note&quot;&quot;:&quot;&quot;Auto-approved by UiPath Maestro (risk below threshold)&quot;&quot;}&quot;]" BodyFormat="application/json" DisplayName="POST Auto-Approve &amp; Close" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="HttpClient_11" Method="POST" TimeoutMS="6000">
+                        <ui:HttpClient.ClientCertificate>
+                          <InArgument x:TypeArguments="x:String" />
+                        </ui:HttpClient.ClientCertificate>
+                        <ui:HttpClient.ClientCertificatePassword>
+                          <InArgument x:TypeArguments="x:String" />
+                        </ui:HttpClient.ClientCertificatePassword>
+                        <ui:HttpClient.Parameters>
+                          <scg:Dictionary x:TypeArguments="x:String, x:InArgument(x:String)" />
+                        </ui:HttpClient.Parameters>
+                      </ui:HttpClient>
+                    </If.Else>
+                  </If>
+                  
+                  <ui:LogMessage DisplayName="Log Processing Completed" sap:VirtualizedContainerService.HintSize="404,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Successfully processed Case ID: &quot; + CaseId]" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+        </Sequence>
+      </If.Then>
+    </If>
+  </Sequence>
+</Activity>
